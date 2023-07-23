@@ -29,7 +29,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Button title='갤러리 열기' onPress={onPressOpenGalley} />
-      <Image source={{ uri: image }} style={{ witdh: 200, height: 200 }} />
+      <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
     </View>
   );
 }
