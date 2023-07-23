@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {
   Button,
+  Dimensions,
   FlatList,
   Image,
   Platform,
@@ -11,6 +12,9 @@ import {
 } from "react-native";
 import { useGallery } from "./src/use-gallery";
 
+const width = Dimensions.get("screen").width;
+const columnSize = width / 3;
+
 export default function App() {
   const { images, pickImage } = useGallery();
 
@@ -19,13 +23,18 @@ export default function App() {
   };
 
   const renderItem = ({ item, index }) => {
-    return <Image source={{ uri: item }} style={{ width: 200, height: 200 }} />;
+    return (
+      <Image
+        source={{ uri: item }}
+        style={{ width: columnSize, height: columnSize }}
+      />
+    );
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <Button title="갤러리 열기" onPress={onPressOpenGalley} />
-      <FlatList data={images} renderItem={renderItem} />
+      <FlatList data={images} renderItem={renderItem} numColumns={3} />
     </SafeAreaView>
   );
 }
