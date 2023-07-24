@@ -19,7 +19,7 @@ export const useGallery = () => {
     if (!result.canceled) {
       const lastId = images.length === 0 ? 0 : images[images.length - 1].id;
       const newImage = {
-        id: lastId,
+        id: lastId + 1,
         uri: result.assets[0].uri,
       };
       setImage([...images, newImage]);
