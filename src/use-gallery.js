@@ -39,8 +39,17 @@ export const useGallery = () => {
     ]);
   };
 
+  const imagesWithAddButton = [
+    ...images,
+    {
+      id: -1,
+      uri: "",
+    },
+  ];
+
   return {
     pickImage,
+    imagesWithAddButton,
     images,
     deleteImage,
   };
