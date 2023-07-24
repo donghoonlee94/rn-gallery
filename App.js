@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+  Alert,
   Button,
   Dimensions,
   FlatList,
@@ -8,6 +9,7 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
 import { useGallery } from "./src/use-gallery";
@@ -16,18 +18,24 @@ const width = Dimensions.get("screen").width;
 const columnSize = width / 3;
 
 export default function App() {
-  const { images, pickImage } = useGallery();
+  const { images, pickImage, deleteImage } = useGallery();
 
   const onPressOpenGalley = () => {
     pickImage();
   };
 
-  const renderItem = ({ item, index }) => {
+  const renderItem = ({ item: { id, uri }, index }) => {
+    const onLongPress = () => {
+      deleteImage(id);
+    };
+
     return (
-      <Image
-        source={{ uri: item }}
-        style={{ width: columnSize, height: columnSize }}
-      />
+      <TouchableOpacity onLongPress={onLongPress}>
+        <Image
+          source={{ uri: uri }}
+          style={{ width: columnSize, height: columnSize }}
+        />
+      </TouchableOpacity>
     );
   };
 
